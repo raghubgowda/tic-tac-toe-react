@@ -1,27 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import './index.css';
-import ShoppingList from './ShoppingList';
-
-// class Square extends React.Component{
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             value:null
-//         };
-//     }
-
-//     render(){
-//         return(
-//             <button 
-//                 className="square" 
-//                 onClick={() => this.props.updateSquareValue()}
-//             >
-//                {this.props.value}
-//             </button>
-//         );
-//     }
-// }
 
 function Square(props){
     return(
@@ -70,7 +49,7 @@ class Board extends React.Component{
         if (winner) {
             status = 'Winner: ' + winner;
         } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+            status = 'Next player: ' + (this.state.isXNext ? 'X' : 'O');
         }
 
         return(
@@ -113,7 +92,7 @@ class Game extends React.Component{
 }
 
 ReactDom.render(
-    <div><Game /><ShoppingList name="Raghu" /></div>, document.getElementById('root')
+    <div><Game /></div>, document.getElementById('root')
 );
 
 function calculateWinner(squares) {
