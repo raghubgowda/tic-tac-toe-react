@@ -96,10 +96,10 @@ class Game extends React.Component{
         const current = history[this.state.stepNumber];
         const winnerLine = calculateWinner(current.squares);
         let status;
-        if (winnerLine && winnerLine !== -1) {
+        if (winnerLine && winnerLine[0] !== -1) {
             status = 'Winner: ' + current.squares[winnerLine[0]];
         } 
-        else if (winnerLine && winnerLine === -1) {
+        else if (winnerLine && winnerLine[0] === -1) {
             status = 'Match drwan!!!';
         }
         else {
@@ -148,5 +148,5 @@ function calculateWinner(squares) {
     if(squares.includes(null)) 
         return null 
     else
-        return -1;
+        return [-1];
   }
