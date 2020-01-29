@@ -3,10 +3,11 @@ import ReactDom from 'react-dom';
 import './index.css';
 
 function Square(props){
-    const className = props.highLight ? 'highlighted' : 'square';
+    const className = props.highLight ? ' highlighted' : '';
     return(
         <button 
-            className={className}
+            id={props.id}
+            className={'square'+className}
             onClick={props.updateSquareValue}>
                 {props.value}
         </button>
@@ -18,7 +19,7 @@ class Board extends React.Component{
         const winnerLine = this.props.winnerLine;
         return (
             <Square 
-                id={i}
+                key={'sqr'+i}
                 value={this.props.squares[i]}
                 updateSquareValue= {() => this.props.onClick(i)}
                 highLight={winnerLine && winnerLine.includes(i)}
@@ -33,9 +34,9 @@ class Board extends React.Component{
             for(let j=i*3; j<=(i*3)+2; j++){
                 rows.push(this.renderSquare(j));
             }
-            squares.push(<div id={i} className="board-row">{rows}</div>);
+            squares.push(<div key={'btn'+i} className="board-row">{rows}</div>);
         }
-    return(<div>{squares}</div>);
+        return(<div>{squares}</div>);
     }
 }
 
@@ -63,6 +64,7 @@ class Game extends React.Component{
             stepNumber: history.length,
         });
     }
+
     jumpTo(step){
         this.setState({
             stepNumber: step,
@@ -81,7 +83,7 @@ class Game extends React.Component{
     render(){
         const history = this.state.history;
         const moves = history.map((step, move) => {
-            const desc = move ? 'Go to move #'+move : '';
+            const desc = move ? `Go to move # ${move}` : '';
             if(desc !== ''){
                 return(
                     <li key={move}>
