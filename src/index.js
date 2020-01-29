@@ -83,7 +83,6 @@ class Game extends React.Component{
     render(){
         const {history, stepNumber} = this.state;
         const moves = history.map((step, move) => {
-            console.log(stepNumber);
             const {lastClicked} = step;
             const row = 1 + Math.floor(lastClicked / 3);
             const col = 1 + lastClicked % 3;
