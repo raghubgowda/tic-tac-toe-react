@@ -18,6 +18,7 @@ class Board extends React.Component{
         const winnerLine = this.props.winnerLine;
         return (
             <Square 
+                id={i}
                 value={this.props.squares[i]}
                 updateSquareValue= {() => this.props.onClick(i)}
                 highLight={winnerLine && winnerLine.includes(i)}
@@ -26,25 +27,15 @@ class Board extends React.Component{
     }
 
     render(){
-        return(
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-            </div>
-        );
+        let squares = [];
+        for(let i=0; i<=2; i++){
+            let rows = [];
+            for(let j=i*3; j<=(i*3)+2; j++){
+                rows.push(this.renderSquare(j));
+            }
+            squares.push(<div id={i} className="board-row">{rows}</div>);
+        }
+    return(<div>{squares}</div>);
     }
 }
 
