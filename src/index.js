@@ -101,10 +101,10 @@ class Game extends React.Component{
             status = 'Winner: ' + current.squares[winnerLine[0]];
         } 
         else if (winnerLine && winnerLine[0] === -1) {
-            status = 'Match drwan!!!';
+            status = 'Match Drwan!!!';
         }
         else {
-            status = 'Next player: ' + (this.state.isXNext ? 'X' : 'O');
+            status = 'Next Player: ' + (this.state.isXNext ? 'X' : 'O');
         }
 
         return(
