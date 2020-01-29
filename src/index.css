@@ -38,6 +38,12 @@ ol, ul {
   outline: none;
 }
 
+.move-selected{
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .square:focus {
   outline: none;
 }

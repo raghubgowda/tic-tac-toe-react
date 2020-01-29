@@ -81,8 +81,9 @@ class Game extends React.Component{
     }
 
     render(){
-        const history = this.state.history;
+        const {history, stepNumber} = this.state;
         const moves = history.map((step, move) => {
+            console.log(stepNumber);
             const {lastClicked} = step;
             const row = 1 + Math.floor(lastClicked / 3);
             const col = 1 + lastClicked % 3;
@@ -90,14 +91,17 @@ class Game extends React.Component{
             if(desc !== ''){
                 return(
                     <li key={move}>
-                       <button onClick={ () => this.jumpTo(move)}>{desc}</button> 
+                       <button 
+                        className={move === stepNumber ? ' move-selected' : ''} 
+                        onClick={ () => this.jumpTo(move)}>{desc}
+                       </button> 
                     </li>
                 );
             }
             else
                 return null;
         });
-        const current = history[this.state.stepNumber];
+        const current = history[stepNumber];
         const winnerLine = calculateWinner(current.squares);
         let status;
         if (winnerLine && winnerLine[0] !== -1) {
