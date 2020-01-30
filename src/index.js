@@ -47,6 +47,7 @@ class Game extends React.Component{
             history: [{squares: Array(9).fill(null), lastClicked: 0}],
             isXNext: true,
             stepNumber: 0,
+            isAscending: true,
         };
     }
 
@@ -77,7 +78,12 @@ class Game extends React.Component{
             history: [{squares: Array(9).fill(null), lastClicked: 0}],
             isXNext: true,
             stepNumber: 0,
+            isAscending: true,
         });
+    }
+
+    toggleSortMoves(){
+        this.setState({isAscending: !this.state.isAscending});
     }
 
     render(){
@@ -100,6 +106,10 @@ class Game extends React.Component{
             else
                 return null;
         });
+        
+        if(!this.state.isAscending){
+            moves.reverse();
+        }
         const current = history[stepNumber];
         const winnerLine = calculateWinner(current.squares);
         let status;
@@ -125,6 +135,8 @@ class Game extends React.Component{
                 <div className="game-info">
                     <button onClick={() => this.restart()}>Restart</button><br/><br/>
                     <div>{status}</div>
+                    <br/>
+                    <button onClick={() => this.toggleSortMoves()}>{this.state.isAscending ? 'Descending' : 'Ascending'}</button>
                     <ol>{moves}</ol>
                 </div>
             </div>
