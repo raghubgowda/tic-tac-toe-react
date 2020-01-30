@@ -113,6 +113,7 @@ class Game extends React.Component{
         const current = history[stepNumber];
         const winnerLine = calculateWinner(current.squares);
         let status;
+
         if (winnerLine && winnerLine[0] !== -1) {
             status = 'Winner: ' + current.squares[winnerLine[0]];
         } 
@@ -131,12 +132,12 @@ class Game extends React.Component{
                         onClick={(i) => this.handleClick(i)}
                         winnerLine={winnerLine}
                     />
+                    <br/><br/>
+                    {!status.startsWith('Next') && <button className='button-action' onClick={() => this.restart()}>Restart</button>}
                 </div>
                 <div className="game-info">
-                    <button onClick={() => this.restart()}>Restart</button><br/><br/>
-                    <div>{status}</div>
-                    <br/>
-                    <button onClick={() => this.toggleSortMoves()}>{this.state.isAscending ? 'Descending' : 'Ascending'}</button>
+                    <div>{status}</div><br/>
+                    {moves.length !== 1 && <button className='button-action' onClick={() => this.toggleSortMoves()}>{this.state.isAscending ? 'Descending' : 'Ascending'}</button>}
                     <ol>{moves}</ol>
                 </div>
             </div>

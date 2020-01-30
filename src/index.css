@@ -56,3 +56,8 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+.button-action{
+  font-size: 13px;
+  background-color: aliceblue;
+}
