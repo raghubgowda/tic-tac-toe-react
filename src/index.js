@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 import './index.css';
 
 function Square(props){
@@ -40,7 +40,7 @@ class Board extends React.Component{
     }
 }
 
-class Game extends React.Component{
+class Game extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -145,7 +145,7 @@ class Game extends React.Component{
     }
 }
 
-ReactDom.render(
+render(
     <div><Game /></div>, document.getElementById('root')
 );
 
